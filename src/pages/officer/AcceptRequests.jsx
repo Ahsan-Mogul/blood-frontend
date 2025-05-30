@@ -16,7 +16,7 @@ const AcceptRequests = () => {
       const staffId = decoded.id;
 
       try {
-        const res = await fetch(`http://localhost:5000/api/requests?staffId=${staffId}`);
+        const res = await fetch(`blood-backend-production.up.railway.app/requests?staffId=${staffId}`);
         const data = await res.json();
         const accepted = data.filter(request => request.status === 'Accepted');
         setAcceptedRequests(accepted);
@@ -30,7 +30,7 @@ const AcceptRequests = () => {
 
   const handleShowDonorInfo = async (requestId) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/accepted-donors/${requestId}`);
+      const res = await fetch(`blood-backend-production.up.railway.app/api/accepted-donors/${requestId}`);
       const donorData = await res.json();
       setSelectedDonorInfo(donorData);
       setShowModal(true);

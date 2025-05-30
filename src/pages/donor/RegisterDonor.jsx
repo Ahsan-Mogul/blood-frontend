@@ -25,7 +25,7 @@ const RegisterDonor = () => {
     };
 
     try {
-      const response = await fetch("http://localhost:5000/api/donors/register", {
+      const response = await fetch("blood-backend-production.up.railway.app/api/donors/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(donorData),

@@ -21,7 +21,7 @@ const HomeDonor = ({ successMessage }) => {
       const decoded = JSON.parse(atob(token.split('.')[1]));
       const email = decoded.email;
 
-      const res = await fetch(`http://localhost:5000/api/donors/by-email/${email}`);
+      const res = await fetch(`blood-backend-production.up.railway.app/api/donors/by-email/${email}`);
       const userData = await res.json();
       setUsername(userData.username || userData.name);
     };
@@ -33,7 +33,7 @@ const HomeDonor = ({ successMessage }) => {
       const decoded = JSON.parse(atob(token.split('.')[1]));
       const donorId = decoded.id;
 
-      const res = await fetch(`http://localhost:5000/api/requests?donorId=${donorId}`);
+      const res = await fetch(`blood-backend-production.up.railway.app/api/requests?donorId=${donorId}`);
       const data = await res.json();
       setRequests(data);
     };
@@ -55,7 +55,7 @@ const HomeDonor = ({ successMessage }) => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch("http://localhost:5000/api/accepted-donors", {
+    const response = await fetch("blood-backend-production.up.railway.app/api/accepted-donors", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -83,7 +83,7 @@ const HomeDonor = ({ successMessage }) => {
   };
 
   const rejectRequest = async (requestId) => {
-    const res = await fetch(`http://localhost:5000/api/requests/reject/${requestId}`, {
+    const res = await fetch(`blood-backend-production.up.railway.app/api/requests/reject/${requestId}`, {
       method: 'PATCH',
     });
 

@@ -9,7 +9,7 @@ const DonorList = () => {
 
   useEffect(() => {
     const fetchDonors = async () => {
-      const response = await fetch('http://localhost:5000/api/donors');
+      const response = await fetch('blood-backend-production.up.railway.app/api/donors');
       const data = await response.json();
       setDonors(data);
     };
@@ -18,7 +18,7 @@ const DonorList = () => {
   }, []);
 
   const handleDelete = async (donorId) => {
-    const response = await fetch(`http://localhost:5000/api/donors/${donorId}`, {
+    const response = await fetch(`blood-backend-production.up.railway.app/api/donors/${donorId}`, {
       method: 'DELETE',
     });
 

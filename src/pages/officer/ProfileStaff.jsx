@@ -25,7 +25,7 @@ const ProfileStaff = () => {
     if (!window.confirm("Are you sure you want to delete your account? This cannot be undone.")) return;
 
     try {
-      const response = await fetch(`http://localhost:5000/api/staff/${staff._id}`, {
+      const response = await fetch(`blood-backend-production.up.railway.app/api/staff/${staff._id}`, {
         method: "DELETE",
       });
 

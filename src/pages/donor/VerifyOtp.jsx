@@ -14,7 +14,7 @@ const VerifyOtp = () => {
       return;
     }
 
-    const response = await fetch('http://localhost:5000/api/donors/verify-otp', {
+    const response = await fetch('blood-backend-production.up.railway.app/api/donors/verify-otp', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ donorData: { ...donorData, otp } })

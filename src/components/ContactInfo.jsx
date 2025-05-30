@@ -20,7 +20,7 @@ const ContactInfo = () => {
 
     // Send form data to backend to trigger the email
     try {
-      const response = await fetch('http://localhost:5000/api/contact/send-email', {
+      const response = await fetch('blood-backend-production.up.railway.app/api/contact/send-email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

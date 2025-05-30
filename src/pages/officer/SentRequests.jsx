@@ -12,7 +12,7 @@ const SentRequests = () => {
       const decoded = JSON.parse(atob(token.split('.')[1]));
       const staffId = decoded.id;
 
-      const res = await fetch(`http://localhost:5000/api/requests?staffId=${staffId}`);
+      const res = await fetch(`blood-backend-production.up.railway.app/api/requests?staffId=${staffId}`);
       const data = await res.json();
       setSentRequests(data);
     };

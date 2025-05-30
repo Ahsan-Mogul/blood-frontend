@@ -12,7 +12,7 @@ const LoginDonor = () => {
     event.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:5000/api/donors/login", {
+      const response = await fetch("blood-backend-production.up.railway.app/api/donors/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),

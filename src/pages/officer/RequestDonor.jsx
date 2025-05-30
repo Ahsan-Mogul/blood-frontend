@@ -28,7 +28,7 @@ const RequestDonor = ({ onRequestSubmit }) => {
 
     const request = { bloodGroup, reason: requestReason, status: 'Pending', staffId };
 
-    const response = await fetch('http://localhost:5000/api/requests/create', {
+    const response = await fetch('blood-backend-production.up.railway.app/api/requests/create', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(request),
