@@ -9,42 +9,48 @@ const RegisterDonor = () => {
   const [isOtpSent, setIsOtpSent] = useState(false);
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
-    const form = event.target;
+  event.preventDefault();
+  const form = event.target;
 
-    const donorData = {
-      name: form.name.value,
-      username: form.username.value,
-      address: form.address.value,
-      phone: form.phone.value,
-      blood_type: form.blood_type.value,
-      birthdate: form.birthdate.value,
-      gender: form.gender.value,
-      email: form.email.value,
-      password: form.password.value,
-    };
-
-    try {
-      const response = await fetch("blood-backend-production.up.railway.app/api/donors/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(donorData),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        alert("✅ OTP has been sent to your email!");
-        setIsOtpSent(true);
-        localStorage.setItem("donorData", JSON.stringify(data.donorData));
-        navigate("/verify-otp");
-      } else {
-        alert("❌ " + data.message);
-      }
-    } catch (error) {
-      alert("❌ Registration failed: " + error.message);
-    }
+  const donorData = {
+    name: form.name.value,
+    username: form.username.value,
+    address: form.address.value,
+    phone: form.phone.value,
+    blood_type: form.blood_type.value,
+    birthdate: form.birthdate.value,
+    gender: form.gender.value,
+    email: form.email.value,
+    password: form.password.value,
   };
+
+  try {
+    const response = await fetch("https://blood-backend-production.up.railway.app/api/donors/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(donorData),
+    });
+
+    let data;
+    try {
+      data = await response.json();
+    } catch (err) {
+      // If server did not return JSON (or returned empty), this will prevent the crash
+      throw new Error("Server returned an invalid or empty response");
+    }
+
+    if (response.ok) {
+      alert("✅ OTP has been sent to your email!");
+      setIsOtpSent(true);
+      localStorage.setItem("donorData", JSON.stringify(data.donorData));
+      navigate("/verify-otp");
+    } else {
+      alert("❌ " + (data?.message || "Something went wrong."));
+    }
+  } catch (error) {
+    alert("❌ Registration failed: " + error.message);
+  }
+};
 
   return (
     <div className="bg-black text-light min-vh-100 d-flex align-items-center">
